@@ -1,7 +1,37 @@
-
 /* Mixin */
 @mixin fontFamilyArial {
-font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@mixin articleH3___colorGreen {
+    color: rgba(0, 128, 0, 0.781);
+}
+
+@mixin asideBorder___colorBlue {
+    border: 0.2rem solid rgba(0, 0, 255, 0.678);
+}
+
+@mixin aisdeH3___colorRed {
+    color: rgba(255, 0, 0, 0.705);
+}
+
+@mixin navUl___backgroundColorGrey {
+    background-color: rgba(128, 128, 128, 0.397);
+}
+
+@mixin footer___backgroundColorGrey {
+    background-color: rgba(128, 128, 128, 0.658);
+}
+
+@mixin displayFlex_RowRaw_justifyCenter {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+@mixin displayFlex_ColumnNowrap {
+display: flex;
+flex-flow: column nowrap;
 }
 
 
@@ -34,8 +64,7 @@ ul {
     display: flex;
     justify-content: center;
     margin-bottom: 1rem;
-    background-color: rgba(128, 128, 128, 0.397);
-
+    @include navUl___backgroundColorGrey();
 
     li {
         padding: 1rem;
@@ -46,20 +75,19 @@ ul {
         a {
             text-decoration: none;
             color: black;
-@include fontFamilyArial()
+            @include fontFamilyArial()
         }
     }
 }
 
 .main {
-    display: flex;
-    flex-flow: column nowrap;
+@include displayFlex_ColumnNowrap()
 }
 
 .section {
     margin: 1rem;
-    
-@include fontFamilyArial,
+
+    @include fontFamilyArial()
 }
 
 .first_article,
@@ -70,7 +98,7 @@ ul {
 
 .first_article>h3,
 .second_article>h3 {
-    color: rgba(0, 128, 0, 0.781);
+    @include articleH3___colorGreen();
 }
 
 .section>h3,
@@ -80,8 +108,7 @@ ul {
 }
 
 .aside {
-    display: flex;
-    flex-flow: column nowrap;
+  @include displayFlex_ColumnNowrap()
 }
 
 .first_aside,
@@ -89,7 +116,7 @@ ul {
 .third_aside,
 .fourth_aside {
     margin: .5rem;
-    border: 0.2rem solid rgba(0, 0, 255, 0.678);
+    @include asideBorder___colorBlue();
     padding: 1rem;
 }
 
@@ -97,7 +124,7 @@ ul {
 .second_aside>h3,
 .third_aside>h3,
 .fourth_aside>h3 {
-    color: rgba(255, 0, 0, 0.705);
+    @include aisdeH3___colorRed();
 }
 
 .footer {
@@ -105,23 +132,18 @@ ul {
     text-align: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     padding: 1rem;
-    background-color: rgba(128, 128, 128, 0.658);
+    @include footer___backgroundColorGrey();
     margin-top: 3rem;
 }
 
 
 @media only screen and (min-width: 1024px) {
     .main {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
+        @include displayFlex_RowRaw_justifyCenter();
     }
 
     .aside {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-    }
+@include displayFlex_RowRaw_justifyCenter();    }
 
     .section,
     .first_article,
@@ -133,7 +155,8 @@ ul {
     .second_aside,
     .third_aside,
     .fourth_aside {
-        width: 45%;
-    }
+        
+        width: 45%; 
+        }
 
 }
